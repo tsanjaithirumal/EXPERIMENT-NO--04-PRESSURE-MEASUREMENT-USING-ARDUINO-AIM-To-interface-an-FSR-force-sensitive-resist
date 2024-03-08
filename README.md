@@ -1,10 +1,13 @@
-# EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resistor
-
+## Exp-4 PRESSURE MEASUREMENT USING ARDUINO AIM TO INTERFACE AN FSR FORCE SENSITIVE RESISTOR
+### Date:01/02/2024
+### Name: SANJAI T
+### Rollnumber:212222040145
+### Department:BE.CSE
 
 ## AIM: 
 To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
  
-### COMPONENTS REQUIRED:
+## COMPONENTS REQUIRED:
 1.	FSR  (force sensitive resistor)
 2.	1 KΩ resistor 
 3.	Arduino Uno 
@@ -12,55 +15,32 @@ To interface an FSR(force sensitive resistor) and scale the output voltage obtai
 5.	Connecting wires 
 
 
-### THEORY: 
+## THEORY: 
 FSRs are basically a resistor that changes its resistive value (in ohms Ω) depending on how much it is pressed. These sensors are fairly low cost, and easy to use. They also vary some from sensor to sensor perhaps 10%. FSR's resistance changes as more pressure is applied. When there is no pressure, the sensor looks like an infinite resistor (open circuit), as the pressure increases, the resistance goes down. This graph indicates approximately the resistance of the sensor at different force measurements.
  
 
+### FIGURE 01 GRAPH OF FORCE vs RESISTANCE **
 ![image](https://user-images.githubusercontent.com/36288975/163532939-d6888ae1-4068-4d83-86a7-fc4c32d5179e.png)
 
-### FIGURE 01 GRAPH OF FORCE vs RESISTANCE **
-
-
-
-
+### FIGURE 02 FORCE SENSITIVE RESITOR FOIL DISC TYPE
 ![image](https://user-images.githubusercontent.com/36288975/163532957-82d57567-a1c3-48c5-8a87-7ea66d6fca49.png)
-
-
-
-
-### FIGURE 02 FORCE SENSITIVE RESITOR FOIL DISC TYPE  
 
 FSRs are often a polymer with conductive material silk-screened on. That means they're plastic and the connection tab is crimped on somewhat delicate material. The best way to connect to these is to simply plug them into a breadboard.
 
 The easiest way to measure a resistive sensor is to connect one end to power and the other to a pull-down resistor to ground. Then the point between the fixed pull down resistor and the variable FSR resistor is connected to the analog input of a microcontroller such as an Arduino The way this works is that as the resistance of the FSR decreases, the total resistance of the FSR and the pull down resistor decreases from about 100Kohm to 10Kohm. That means that the current flowing through both resistors increases which in turn causes the voltage across the fixed 10K resistor to increase.
 
+## TABLE -01 FORCE AND OUTPUT VOLTAGES**
  ![image](https://user-images.githubusercontent.com/36288975/163532972-2b909551-12c9-485d-adb1-d1e988d557bd.png)
-
-### TABLE -01 FORCE AND OUTPUT VOLTAGES**
 	
-  Table -01 indicates the approximate analog voltage based on the sensor force/resistance w/a 5V supply and 10K pull down resistor.
+Table -01 indicates the approximate analog voltage based on the sensor force/resistance w/a 5V supply and 10K pull down resistor.
 
-### Vo = Vcc ( R / (R + FSR) )								Eq-01
+## Vo = Vcc ( R / (R + FSR) )								Eq-01
 
 ****Where R= 1KΩ in this experiment 
 ****That is, the voltage is proportional to the inverse of the FSR resistance.
 
-
-
-
-
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
-
-
-
 ### FIGURE-03 CIRCUIT DIAGRAM
-
-
+![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -74,35 +54,38 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 9.	Ensure safety before powering up the device 
 10.	Plot the graph for the output voltage vs the resistance 
 
+## PROGRAM
+```
+int LED=7;
+int FSR;
+void setup()
+{
+  pinMode(LED,OUTPUT);
+  Serial.begin(9600);
+}
 
-### PROGRAM 
- *your roll no 
- * your name 
- * department and year 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+void loop()
+{
+  FSR=analogRead(A0);
+  Serial.print("Raw value=");
+  Serial.println(FSR);
+  delay(500);
+  int m;
+  m=map(FSR,0,159,0,10);
+  Serial.print("Mapped value=");
+  Serial.println(m);
+  if(FSR>50)
+  {
+    digitalWrite(LED,LOW);
+    delay(500);
+    digitalWrite(LED,HIGH);
+    delay(500);
+  }
+}
+```
 
-![image](https://user-images.githubusercontent.com/36288975/188804653-a3154e8e-2655-46f2-9dcd-f425dd1ba109.png)
-
-
-### TABLE -02 standard deviation table 
 ### Population Standard Deviation
 The population standard deviation, the standard definition of σ, is used when an entire population can be measured, and is the square root of the variance of a given data set. In cases where every member of a population can be sampled, the following equation can be used to find the standard deviation of the entire population:
-
-
 
 Where
 xi is an individual value
@@ -115,13 +98,19 @@ EX:           μ = (1+3+4+7+8) / 5 = 4.6
 σ = √[(1 - 4.6)2 + (3 - 4.6)2 + ... + (8 - 4.6)2)]/5
 σ = √(12.96 + 2.56 + 0.36 + 5.76 + 11.56)/5 = 2.577
 
+## OUTPUT:
+![Screenshot 2024-03-08 141604](https://github.com/tsanjaithirumal/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/119393916/9bd05aca-9772-46d0-ae00-b113f88b8215)
 
+### Sematic diagram:
+![Screenshot 2024-03-08 141706](https://github.com/tsanjaithirumal/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/119393916/7fca7b8e-4fe9-4440-a666-1bce7e680d59)
 
+### Table:
+![sheet-2-images-1](https://github.com/balar2004/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/118791778/b2bc4c1c-bcaa-4b34-bea7-791b49746480)
+### Graph:
+![graph](https://github.com/balar2004/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/118791778/2c481edb-3502-4e35-aade-e74f283a0eb9)
 
-
-
-
-
+### RESULTS: 
+Arduino uno is interfaced with FSR and output values are indicated on a graph.
 
 
 
